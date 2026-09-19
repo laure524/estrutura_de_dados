@@ -1,27 +1,33 @@
 #include <stdio.h>
-#include "aluno.h"
+#include "complexo.h"
 
 int main() {
-    CadastroAlunos turma;
-    inicializar(&turma);
-    
-    char nome[MAX_NOME];
-    int matricula;
-    float n1, n2;
-    
-    // Instrução exibida na saída desejada
-    printf("Dados do aluno: nome(sem espacos), matricula, nota1, nota2\n");
-    
-    // Lendo os dados de 3 alunos interativamente (conforme o exemplo do exercício)
-    for (int i = 1; i <= 3; i++) {
-        printf("Informe os dados do aluno(%d): ", i);
-        scanf("%s %d %f %f", nome, &matricula, &n1, &n2);
-        
-        cadastrarAluno(&turma, nome, matricula, n1, n2);
-    }
-    
-    // Exibindo a listagem final formatada
-    exibirAlunos(&turma);
-    
+    Complexo c1, c2, c3, c4;
+
+    // Testar a operação Atribui[cite: 2]
+    Atribui(&c1, 4.0f, 3.0f);
+    Atribui(&c2, 2.5f, -1.0f);
+    Atribui(&c4, 7.0f, 0.0f);
+
+    printf("Número C1: ");
+    Imprime(c1); // Deve imprimir 4.00 + 3.00i[cite: 2]
+
+    printf("Número C2: ");
+    Imprime(c2); // Deve imprimir 2.50 + -1.00i[cite: 2]
+
+    // Testar a operação Copia[cite: 2]
+    Copia(&c3, c1);
+    printf("Número C3 (Cópia de C1): ");
+    Imprime(c3);
+
+    // Testar a operação Soma[cite: 2]
+    Complexo resultadoSoma = Soma(c1, c2);
+    printf("Soma (C1 + C2): ");
+    Imprime(resultadoSoma);
+
+    // Testar a operação EhReal[cite: 2]
+    printf("O número C1 é real? %s\n", EhReal(c1) ? "Sim" : "Não");
+    printf("O número C4 é real? %s\n", EhReal(c4) ? "Sim" : "Não");
+
     return 0;
 }
